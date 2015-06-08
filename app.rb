@@ -20,4 +20,14 @@ post('/') do
 end
 
 get('/lists/:id') do
+  @list = List.find(params.fetch('id').to_i())
+  erb(:list)
+end
+
+post('/lists') do
+  description = params.fetch('description')
+  list_id = params.fetch('list_id').to_i()
+  task = Task.new({:description => description, :list_id => list_id})
+  task.save()
+  redirect back
 end
