@@ -4,6 +4,7 @@ gem('sinatra-contrib', :require => 'sinatra/reloader')
 
 group(:production) do
   gem('sinatra')
+  gem('pg')
 end
 
 group(:test) do
