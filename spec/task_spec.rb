@@ -22,9 +22,13 @@ describe(Task) do
   end
   describe('#list_id') do
     it('lets you read the list id out') do
-      test_task = Task.new({:description => 'learn SQL', :list_id => 1}) do
-        expect(test_task.list_id()).to(eq(1))
-      end
+      test_task = Task.new({:description => 'learn SQL', :list_id => 1})
+      expect(test_task.list_id()).to(eq(1))
+    end
+  end
+    describe('#description') do
+      it('lets you read the description out') do
+      test_task = Task.new({:description => 'learn SQL', :list_id => 1})
     end
   end
 end
