@@ -6,4 +6,18 @@ describe(List) do
       expect(List.all()).to(eq([]))
     end
   end
+  describe('#save') do
+    it('lets you save lists to the database') do
+      test_list = List.new({:name => 'Epicodus stuff', :id => 1})
+      test_list.save()
+      expect(List.all()).to(eq([test_list]))
+    end
+  end
+  describe('#==') do
+    it('is the same list if it has the same name') do
+      list1 = List.new({:name => 'Epicodus stuff', :id => nil})
+      list2 = List.new({:name => 'Epicodus stuff', :id => nil})
+      expect(list1).to(eq(list2))
+    end
+  end
 end
