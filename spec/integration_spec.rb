@@ -24,3 +24,14 @@ describe('the list page path', {:type => :feature}) do
     expect(page).to have_content('get out of bed')
   end
 end
+
+describe('the update and delete path', {:type => :feature}) do
+  it('allows user to update lists') do
+    visit('/')
+    fill_in('name', :with => 'Epicodus')
+    click_button('Add')
+    click_link('Epicodus')
+    click_button("Delete List")
+    expect(page).to have_content('To Do List App')
+  end
+end
