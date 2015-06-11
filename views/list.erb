@@ -1,40 +1,62 @@
-<h1><%= @list.name() %></h1>
 
+
+  <h1><%= @list.name() %></h1>
+
+
+
+<div class='form-group'>
 <ul>
   <% @list.tasks().each() do |task| %>
 
-  <li><a href='/tasks/<%= task.list_id() %>'><%= task.description() %></a></li>
+  <li><%= task.description() %></li>
   <% end %>
 </ul>
+</div>
+
 
 <form action='/lists/:id' method='post'>
-  <div class='form-group'>
-
-    <label for="list_id">Select a List</label>
-    <select id='list_id' name='list_id' type='text'>
-      <% @lists.each() do |list| %>
-      <option value="<%= list.id()%>"> <%= list.name() %> </option>
-      <% end %>
-    </select>
 
 
-    <label for='description'>Task Description</label>
-    <input id = 'description' name='description' type='text'>
-  </div>
-  <button type='submit' class='btn btn-button'>Add</button>
+  <label for="list_id">Select a List</label>
+  <select id='list_id' name='list_id' type='text'>
+    <% @lists.each() do |list| %>
+    <option value="<%= list.id()%>"> <%= list.name() %> </option>
+    <% end %>
+  </select>
+
+
+  <label for='description'>Task Description</label>
+
+  <input id = 'description' name='description' type='text'>
+  <button type='submit' class='btn btn-info'>Add</button>
+
+
 </form>
 
 
-<p><a href='/lists/<%= @list.id %>/edit'>Edit <%=@list.name %> list</a></p>
-<p><a href='/'>Return to Main Page</a></p>
 
-<h1> Update the <%=@list.name %> list </h1>
 
-<form action='/lists/ <%= @list.id %>' method='post'>
-  <input name='_method' type='hidden' value='patch'>
+<div class="form-group">
+  <h1> Update the <%=@list.name %> list </h1>
 
-  <label for='name'> Rename Your List:</label>
-  <input id='name' name='name' type='text'>
+    <form action='/lists/ <%= @list.id %>' method='post'>
+      <input name='_method' type='hidden' value='patch'>
 
-  <button type='submit' class='btn-btn-success'> Update </button>
+      <label for='name'> Rename Your List:</label>
+      <input id='name' name='name' type='text'>
+
+      <button type='submit' class='btn btn-info'> Update </button>
+
+    </form>
+</div>
+
+<div class="container">
+<form action='/' method='post'>
+  <input name='_method' type='hidden' value='delete'>
+  <input id='id' name='id' type='hidden' value='<%= @list.id %>'>
+
+  <button type="submit" class='btn btn-danger'>Delete List</button>
 </form>
+</div>
+
+<p><h3><a href='/'>Return to Main Page</h3></a></p>
