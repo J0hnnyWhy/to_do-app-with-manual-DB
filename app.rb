@@ -30,5 +30,20 @@ post('/lists/:id') do
   list_id = params.fetch('list_id').to_i()
   task = Task.new({:description => description, :list_id => list_id})
   task.save()
+  @list = List.find(list_id)
   redirect back
+end
+
+get('/lists/:id/edit') do
+  @list = List.find(params.fetch("id").to_i)
+  @lists = List.all
+  erb(:list)
+end
+
+patch('/lists/:id') do
+  name = params.fetch('name')
+  @list = List.find(params.fetch('id').to_i)
+  @list.update({:name => name})
+  @lists = List.all
+  erb(:list)
 end

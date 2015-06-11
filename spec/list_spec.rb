@@ -40,4 +40,35 @@ describe(List) do
       expect(test_list.tasks()).to(eq([test_task, test_task2]))
     end
   end
+  describe('#update') do
+    it('lets you update a list in the database') do
+      list = List.new({:name => "Clean the toilet",  :id => nil})
+      list.save
+      list.update({:name => "clean the dog"})
+      expect(list.name).to(eq('clean the dog'))
+    end
+  end
+  describe('#delete') do
+    it('lets you delete a list from the database') do
+      list = List.new({:name => 'Epicodus Stuff', :id => nil})
+      list.save
+      list2 = List.new({:name => 'house stuff', :id => nil})
+      list2.save
+      list.delete
+      expect(List.all).to(eq([list2]))
+    end
+
+    it('deletes a list\'s tasks from the database') do
+      list = List.new({:name => 'Epicodus Stuff', :id => nil})
+      list.save
+      task = Task.new({:description => 'learn SQL', :list_id => list.id})
+      task.save
+      task2 = Task.new({:description => "review ruby", :list_id => list.id})
+      task2.save
+      list.delete
+      expect(Task.all).to(eq([]))
+      end
+    end
+
+
 end
