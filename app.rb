@@ -21,10 +21,11 @@ end
 
 get('/lists/:id') do
   @list = List.find(params.fetch('id').to_i())
+  @lists = List.all
   erb(:list)
 end
 
-post('/lists') do
+post('/lists/:id') do
   description = params.fetch('description')
   list_id = params.fetch('list_id').to_i()
   task = Task.new({:description => description, :list_id => list_id})

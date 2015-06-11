@@ -7,9 +7,16 @@
   <% end %>
 </ul>
 
-<form action='/lists' method='post'>
+<form action='/lists/:id' method='post'>
   <div class='form-group'>
-    <input id='list_id' name='list_id' type='hidden' value='<%= @list.id() %>'>
+
+    <label for="list_id">Select a List</label>
+    <select id='list_id' name='list_id' type='text'>
+      <% @lists.each() do |list| %>
+      <option value="<%= list.id()%>"> <%= list.name() %> </option>
+      <% end %>
+    </select>
+
 
     <label for='description'>Task Description</label>
     <input id = 'description' name='description' type='text'>
