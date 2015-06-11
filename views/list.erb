@@ -1,6 +1,6 @@
 
 
-  <h1><%= @list.name() %></h1>
+  <h2>Here are All of the Tasks for :<%= @list.name() %></h2>
 
 
 
@@ -16,16 +16,9 @@
 
 <form action='/lists/:id' method='post'>
 
+  <input id='list_id' name='list_id' type='hidden' value='<%= @list.id %>'>
 
-  <label for="list_id">Select a List</label>
-  <select id='list_id' name='list_id' type='text'>
-    <% @lists.each() do |list| %>
-    <option value="<%= list.id()%>"> <%= list.name() %> </option>
-    <% end %>
-  </select>
-
-
-  <label for='description'>Task Description</label>
+  <label for='description'>Add a Task to this List</label>
 
   <input id = 'description' name='description' type='text'>
   <button type='submit' class='btn btn-info'>Add</button>
@@ -37,7 +30,7 @@
 
 
 <div class="form-group">
-  <h1> Update the <%=@list.name %> list </h1>
+  <h3> Update the <%=@list.name %> list </h3>
 
     <form action='/lists/ <%= @list.id %>' method='post'>
       <input name='_method' type='hidden' value='patch'>
